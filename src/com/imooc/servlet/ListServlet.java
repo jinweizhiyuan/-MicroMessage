@@ -29,7 +29,7 @@ public class ListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		super.doGet(req, resp);
 		try {
-			Class.forName("org.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/micro_message", "root", "root");
 			String sql = "select ID,COMMAND,DESCRIPTION,CONTENT from MESSAGE";
 			PreparedStatement statement = conn.prepareStatement(sql);
@@ -44,6 +44,7 @@ public class ListServlet extends HttpServlet {
 				message.setContent(rs.getString("CONTENT"));
 			}
 			req.setAttribute("messageList", messageList);
+			req.getRequestDispatcher("/WEB-INF/jsp/back/list.jsp").forward(req, resp);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,7 +52,6 @@ public class ListServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher("/WEB-INF/jsp/back/list.jsp").forward(req, resp);
 	}
 	
 	@Override

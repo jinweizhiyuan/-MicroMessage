@@ -43,10 +43,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 								    <th>描述</th>
 								    <th>操作</th>
 								</tr>
-								<c:forEach items=messageList var=message varStatus=status>
-								<tr <c:if test=${ status.index % 2 != 0 }>style="background-color:#ECF6EE;"</c:if> >
+								<c:forEach items="${ messageList }" var="message" varStatus="status">
+								<tr <c:if test="${ status.index % 2 != 0 }">style="background-color:#ECF6EE;"</c:if> >
 									<td><input type="checkbox" /></td>
-									<td>${ message.id }</td>
+									<td>${ status.index + 1 }</td>
 									<td>${ message.command }</td>
 									<td>${ message.description }</td>
 									<td>
