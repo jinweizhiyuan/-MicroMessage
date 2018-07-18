@@ -1,8 +1,9 @@
 ﻿<%@ page language="java" pageEncoding="utf-8" contentType="text/html; utf-8"  %>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%
 String path = request.getContextPath();
-String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/" + path + "/";
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -38,21 +39,23 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 								<tr>
 								    <th><input type="checkbox" id="all" onclick="#"/></th>
 								    <th>序号</th>
-								    <th>演示字段1</th>
-								    <th>演示字段2</th>
+								    <th>指令名称</th>
+								    <th>描述</th>
 								    <th>操作</th>
 								</tr>
-								<tr>
+								<c:forEach items=messageList var=message varStatus=status>
+								<tr <c:if test=${ status.index % 2 != 0 }>style="background-color:#ECF6EE;"</c:if> >
 									<td><input type="checkbox" /></td>
-									<td>1</td>
-									<td>演示值1</td>
-									<td>演示值2</td>
+									<td>${ message.id }</td>
+									<td>${ message.command }</td>
+									<td>${ message.description }</td>
 									<td>
 										<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
 										<a href="#">删除</a>
 									</td>
 								</tr>
-								<tr style="background-color:#ECF6EE;">
+								</c:forEach>
+								<!-- <tr style="background-color:#ECF6EE;">
 									<td><input type="checkbox" /></td>
 									<td>2</td>
 									<td>演示值1</td>
@@ -81,7 +84,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 										<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
 										<a href="#">删除</a>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 						<div class='page fix'>
