@@ -19,4 +19,9 @@ public class ListService {
 		return dao.queryMessage(command, description);
 	}
 	
+	public List<Message> queryMessageList2(String command, String description) {
+		MessageDao dao = new MessageDao();
+		return dao.queryMessage2(command, description);
+	}
+	
 }

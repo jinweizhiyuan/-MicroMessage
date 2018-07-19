@@ -43,6 +43,10 @@
       </dataSource>
     </environment>
   </environments>
+  
+  <mappers>
+    <mapper resource="com/imooc/config/sqlxml/Message.xml"/>
+  </mappers>
 
   <!-- <mappers>
     <mapper resource="org/apache/ibatis/submitted/complex_property/User.xml"/>

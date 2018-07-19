@@ -26,9 +26,13 @@ public class MessageDao {
 	public List<Message> queryMessage2 (String command, String description) {
 		DBAccess dbAccess = new DBAccess();
 		SqlSession sqlSession = null;
-		
+		List<Message> list = new ArrayList<Message>();
 		try {
+			Message message = new Message();
+			message.setCommand(command);
+			message.setDescription(description);
 			sqlSession = dbAccess.getSqlSession();
+			list = sqlSession.selectList("Message.queryMessage", message);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,7 +42,7 @@ public class MessageDao {
 			}
 		}
 		
-		return null;
+		return list;
 	}
 	public static void main(String[] args) {
 		MessageDao messageDao = new MessageDao();
@@ -58,7 +62,7 @@ public class MessageDao {
 				paramList.add(command);
 			}
 			if (description != null && !"".equals(description.trim())) {
-				sql.append(" and description=?");
+				sql.append(" and description like '%' ? '%'");
 				paramList.add(description);
 			}
 			PreparedStatement statement = conn.prepareStatement(sql.toString());
