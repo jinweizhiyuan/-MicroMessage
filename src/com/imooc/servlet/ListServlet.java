@@ -28,7 +28,8 @@ public class ListServlet extends HttpServlet {
 		req.setAttribute("description", description);
 		ListService listService = new ListService();
 		//查询消息列表
-		req.setAttribute("messageList", listService.queryMessageList(command, description));
+//		req.setAttribute("messageList", listService.queryMessageList(command, description));
+		req.setAttribute("messageList", listService.queryMessageList2(command, description));
 		//页面跳转
 		req.getRequestDispatcher("/WEB-INF/jsp/back/list.jsp").forward(req, resp);
 	}

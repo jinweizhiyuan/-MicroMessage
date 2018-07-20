@@ -10,11 +10,24 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-  	<servlet-name>listServlet</servlet-name>
-  	<servlet-class>com.imooc.servlet.ListServlet</servlet-class>
+    <servlet-name>listServlet</servlet-name>
+    <servlet-class>com.imooc.servlet.ListServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>listServlet</servlet-name>
-  	<url-pattern>/List.action</url-pattern>
+    <servlet-name>listServlet</servlet-name>
+    <url-pattern>/List.action</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>initLog4j</servlet-name>
+    <servlet-class>com.imooc.servlet.InitLog4j</servlet-class>
+    <init-param>
+      <param-name>log4jConfig</param-name>
+      <param-value>classpath:log4j.properties</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>initLog4j</servlet-name>
+    <url-pattern>/initLog4j</url-pattern>
   </servlet-mapping>
 </web-app>

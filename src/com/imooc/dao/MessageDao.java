@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
 
 import com.imooc.bean.Message;
 import com.imooc.db.DBAccess;
@@ -24,6 +25,8 @@ import com.imooc.db.DBAccess;
 public class MessageDao {
 	
 	public List<Message> queryMessage2 (String command, String description) {
+		//Logger log = Logger.getLogger(MessageDao.class);
+		//log.debug("queryMessage");
 		DBAccess dbAccess = new DBAccess();
 		SqlSession sqlSession = null;
 		List<Message> list = new ArrayList<Message>();
@@ -44,12 +47,31 @@ public class MessageDao {
 		
 		return list;
 	}
+	
+	public void deleteOne(int id) {
+		DBAccess dbAccess = new DBAccess();
+		SqlSession sqlSession;
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			sqlSession.delete("Message.deleteOne", id);
+			sqlSession.commit();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		MessageDao messageDao = new MessageDao();
 		messageDao.queryMessage2("", "");
+		//Logger log = Logger.getLogger(MessageDao.class);
+		//log.debug("dddd");
+		
 	}
 	
 	public List<Message> queryMessage (String command, String description) {
+		Logger log = Logger.getLogger(MessageDao.class);
+		log.debug("queryMessage");
 		List<Message> messageList = new ArrayList<Message>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
