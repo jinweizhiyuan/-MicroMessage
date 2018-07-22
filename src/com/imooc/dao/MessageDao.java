@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
@@ -54,6 +55,31 @@ public class MessageDao {
 		try {
 			sqlSession = dbAccess.getSqlSession();
 			sqlSession.delete("Message.deleteOne", id);
+			sqlSession.commit();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteBatch(List<Integer> ids) {
+		DBAccess dbAccess = new DBAccess();
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			sqlSession.delete("Message.deleteBatch", ids);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void add(Map param) {
+		DBAccess dbAccess = new DBAccess();
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			sqlSession.insert("Message.addCommand", param);
 			sqlSession.commit();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
