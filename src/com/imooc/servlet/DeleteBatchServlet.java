@@ -13,14 +13,14 @@ import com.imooc.service.MaintainService;
 /**
  * Servlet implementation class DeleteBatch
  */
-@WebServlet("/DeleteBatch")
-public class DeleteBatch extends HttpServlet {
+@WebServlet("/DeleteBatchServlet.action")
+public class DeleteBatchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteBatch() {
+    public DeleteBatchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,7 +35,7 @@ public class DeleteBatch extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		MaintainService maintainService = new MaintainService();
 		maintainService.deleteBatch(request.getParameterValues("id"));
-		response.sendRedirect("/List.action");
+		response.sendRedirect(request.getContextPath() + "/List.action");
 	}
 
 	/**

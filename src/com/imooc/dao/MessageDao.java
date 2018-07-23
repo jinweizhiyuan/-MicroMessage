@@ -51,7 +51,7 @@ public class MessageDao {
 	
 	public void deleteOne(int id) {
 		DBAccess dbAccess = new DBAccess();
-		SqlSession sqlSession;
+		SqlSession sqlSession = null;
 		try {
 			sqlSession = dbAccess.getSqlSession();
 			sqlSession.delete("Message.deleteOne", id);
@@ -59,6 +59,10 @@ public class MessageDao {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
 		}
 	}
 	
@@ -68,9 +72,14 @@ public class MessageDao {
 		try {
 			sqlSession = dbAccess.getSqlSession();
 			sqlSession.delete("Message.deleteBatch", ids);
+			sqlSession.commit();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
 		}
 	}
 	
@@ -92,7 +101,6 @@ public class MessageDao {
 		messageDao.queryMessage2("", "");
 		//Logger log = Logger.getLogger(MessageDao.class);
 		//log.debug("dddd");
-		
 	}
 	
 	public List<Message> queryMessage (String command, String description) {
