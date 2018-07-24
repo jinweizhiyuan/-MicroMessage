@@ -33,4 +33,3 @@ alter table message modify COMMAND char(255) not null;
 alter table message modify DESCRIPTION char(255);  
 alter table message modify CONTENT char(255) not null;  
 insert into message (COMMAND, DESCRIPTION, CONTENT) values ('test', 'test desc', 'test content');
-test
