@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.imooc.service.ListService;
+import com.imooc.service.QueryService;
 
 /**
  * 
@@ -26,7 +26,7 @@ public class ListServlet extends HttpServlet {
 		//向页面传值
 		req.setAttribute("command", command);
 		req.setAttribute("description", description);
-		ListService listService = new ListService();
+		QueryService listService = new QueryService();
 		//查询消息列表
 //		req.setAttribute("messageList", listService.queryMessageList(command, description));
 		req.setAttribute("messageList", listService.queryMessageList2(command, description));
