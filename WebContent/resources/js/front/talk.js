@@ -151,6 +151,7 @@ function render() {
 	// extend the jScollPane by merging	
 	$.extend( true, jspapi, extensionPlugin );
 	jspapi.addHoverFunc();
+	jspapi.scrollToBottom(100);
 }
 
 /**
